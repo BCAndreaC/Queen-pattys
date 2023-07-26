@@ -14,9 +14,9 @@ export function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Login />} />
-        <Route path="/order" element={<PrivateRoute element={<Order/>} allowedRoles={['meserx']}></PrivateRoute>} />
-        <Route path='/kitchen' element={<PrivateRoute element={<Kitchen/>}  allowedRoles={['jefe de cocina']}></PrivateRoute>} />
-        <Route path= '/delivers' element={<PrivateRoute element={<Delivers/>} allowedRoles={['meserx']}></PrivateRoute>} />
+        <Route path="/order" element={<PrivateRoute element={<Order/>} allowedRoles={['waiter']}></PrivateRoute>} />
+        <Route path='/kitchen' element={<PrivateRoute element={<Kitchen/>}  allowedRoles={['chef']}></PrivateRoute>} />
+        <Route path= '/delivers' element={<PrivateRoute element={<Delivers/>} allowedRoles={['waiter']}></PrivateRoute>} />
         <Route path= '/admon-users' element={<PrivateRoute element={<Admon/>} allowedRoles={['admin']}></PrivateRoute>} />
         <Route path= '/admon-products' element={<PrivateRoute element={<AdmonProducts/>} allowedRoles={['admin']}></PrivateRoute>} />
       </Routes>

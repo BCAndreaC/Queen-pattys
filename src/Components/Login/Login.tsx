@@ -36,9 +36,9 @@ function Login() {
     // console.log('aqui va llamada', token)
     if (userRole === "admin") {
       navigate("/admon-users");
-    } else if (userRole === "meserx") {
+    } else if (userRole === "waiter") {
       navigate("/order");
-    } else if (userRole === "jefe de cocina") {
+    } else if (userRole === "chef") {
       navigate("/kitchen");
     }
   };

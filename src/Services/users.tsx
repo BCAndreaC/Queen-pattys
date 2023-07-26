@@ -43,10 +43,7 @@ function postUser(email: string, password: string, role: string): Promise<object
         } else {
             return data
         }}
-    )
-    .catch(error =>{
-        console.error('Error sending order:', error);
-    });
+    );
 }
 
 function patchUsers(id: number, email: string, password: string, role: string): Promise<object>  {

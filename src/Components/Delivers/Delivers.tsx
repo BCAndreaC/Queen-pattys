@@ -105,7 +105,7 @@ function Modal({
                   </button>
                   <button
                     type="button"
-                    className="inline-flex w-full justify-center rounded-md bg-red-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-red-500 sm:ml-3 sm:w-auto mr-6"
+                    className="inline-flex w-full justify-center rounded-md px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-red-500 sm:ml-3 sm:w-auto mr-6 outline outline-1 outline-red-600"                    
                     onClick={() => onClose()}
                     ref={cancelButtonRef}
                   >

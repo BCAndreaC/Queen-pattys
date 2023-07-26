@@ -27,14 +27,18 @@ function UsersTable({
     password: string,
     role: string
   ) => void;
-  handleAddUser: (email: string, password: string, role: string) => void;
+  handleAddUser: (
+    email: string,
+    password: string,
+    role: string
+  ) => Promise<object>;
 }) {
   const [selectedUser, setSelectedUser] = useState<number | null>(null);
   const [selectedUserEdit, setSelectedUserEdit] = useState<number | null>(null);
 
   return (
     <div className="mx-auto pt-12 ">
-      <AddUser handleAddUser={handleAddUser}/>
+      <AddUser handleAddUser={handleAddUser} />
       <div className="rounded-xl overflow-hidden outline-4 outline outline-kitchenText ">
         <table className=" bg-blackInput   table-fixed">
           <thead>
@@ -78,7 +82,6 @@ function UsersTable({
             selectedUser={selectedUser}
             onClose={() => setSelectedUser(null)}
             onCompleted={handleDelete}
-          
           ></DeleteModalUsers>
         )}
         {selectedUserEdit !== null && (
@@ -97,9 +100,12 @@ function UsersTable({
 function AddUser({
   handleAddUser,
 }: {
-  handleAddUser: (email: string, password: string, role: string) => void;
+  handleAddUser: (
+    email: string,
+    password: string,
+    role: string
+  ) => Promise<object>;
 }) {
-  // const [openAdd, setOpenAdd] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const handleModalClose = () => {
     setShowModal(false);
@@ -115,10 +121,7 @@ function AddUser({
       </button>
       <>
         {showModal && (
-          <AddUserModal
-            onClose={handleModalClose}
-            onSubmit={handleAddUser}
-          />
+          <AddUserModal onClose={handleModalClose} onSubmit={handleAddUser} />
         )}
       </>
     </div>
@@ -130,18 +133,32 @@ function AddUserModal({
   onSubmit,
 }: {
   onClose: () => void;
-  onSubmit: (email: string, password: string, role: string) => void;
+  onSubmit: (email: string, password: string, role: string) => Promise<object>;
 }) {
   const [open, setOpen] = useState(true);
   const cancelButtonRef = useRef(null);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [role, setRole] = useState("");
+  const [error, setError] = useState("");
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    onSubmit(email, password, role);
-    onClose();
+    onSubmit(email, password, role)
+      .then(onClose)
+      .catch((err) => {
+        switch (err.message) {
+          case "Password is too short":
+            setError("La contraseña es muy corta");
+            break;
+          case "Email already exists":
+            setError("El correo ya existe");
+            break;
+          default:
+            setError("");
+            break;
+        }
+      });
   };
 
   return (
@@ -259,18 +276,26 @@ function AddUserModal({
                               />
                             </div>
                           </div>
-                          <div className="bg-gunMetal px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6 mb-4 mr-6 mt-6 justify-center">
-                          <button
-                            type="submit"
-                            className="mt-3 inline-flex w-full justify-center rounded-md bg-greenConfirm px-6 py-2 text-sm font-semibold text-gray-900 shadow-sm hover:bg-gray-50 sm:mt-0 sm:w-auto"
-        
-                          >Crear</button>
-                          <button
-                            type="button"
-                            className="inline-flex w-full justify-center rounded-md px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-red-500 sm:ml-3 sm:w-auto mr-6 outline outline-1 outline-red-600"
-                            onClick={() => onClose()}
-                            ref={cancelButtonRef}
-                          >Cancelar</button>
+                          {error && (
+                            <p className="text-red-400 font-medium text-sm my-4">
+                              {error}
+                            </p>
+                          )}
+                          <div className="bg-gunMetal px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6 mb-4 mr-6 mt-3 justify-center">
+                            <button
+                              type="submit"
+                              className="mt-3 inline-flex w-full justify-center rounded-md bg-greenConfirm px-6 py-2 text-sm font-semibold text-gray-900 shadow-sm hover:bg-gray-50 sm:mt-0 sm:w-auto"
+                            >
+                              Crear
+                            </button>
+                            <button
+                              type="button"
+                              className="inline-flex w-full justify-center rounded-md px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-red-500 sm:ml-3 sm:w-auto mr-6 outline outline-1 outline-red-600"
+                              onClick={() => onClose()}
+                              ref={cancelButtonRef}
+                            >
+                              Cancelar
+                            </button>
                           </div>
                         </form>
                       </div>
@@ -290,12 +315,10 @@ function DeleteModalUsers({
   selectedUser,
   onClose,
   onCompleted,
-  
 }: {
   selectedUser: number;
   onClose: () => void;
   onCompleted: (selectedUser: number) => void;
-
 }) {
   const [open, setOpen] = useState(true);
 
@@ -390,7 +413,6 @@ function EditUserModal({
   onClose,
   onSubmit,
   UsersItems,
-  
 }: {
   selectedUserEdit: number;
   onClose: () => void;
@@ -401,7 +423,6 @@ function EditUserModal({
     role: string
   ) => void;
   UsersItems: Users["UsersItems"];
- 
 }) {
   const selectedUser = UsersItems.find((u) => u.id === selectedUserEdit);
   const [open, setOpen] = useState(true);
@@ -449,7 +470,6 @@ function EditUserModal({
               <Dialog.Panel className="relative transform overflow-hidden rounded-lg bg-gunMetal text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg">
                 <div className="bg-gunMetal px-4 pb-4 pt-5 sm:p-6 sm:pb-4">
                   <div className="sm:flex sm:items-start">
-                
                     <div className="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left">
                       <Dialog.Title
                         as="h2"
@@ -551,7 +571,7 @@ function EditUserModal({
                                     password,
                                     role
                                   );
-                                  onClose();           
+                                  onClose();
                                 }
                               }}
                             >

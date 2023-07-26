@@ -1,24 +1,21 @@
 import { postOrders } from "../../Services/orders.tsx";
 
-interface MenuBtnProps {
-  meals: string[];
-} 
-
-function MenuBtn({ meals }: MenuBtnProps) {
+function MenuBtn({ meals, setCategory }: { meals: string[]; setCategory: (menu: string) => void}) {
   return (
     <>
       {meals.map(
         (
-          menu // se mapea sobre el array
+          menu 
         ) => (
           <ul
             key={menu}
-            className="bg-blackBtn rounded-3xl w-full h-20 flex justify-evenly items-center m-3 border-2 border-amber-200"
+            onClick={() => setCategory(menu)}
+            className="bg-blackBtn rounded-3xl w-full h-20 flex justify-evenly items-center m-3 border-2 border-amber-200 hover:cursor-pointer active:bg-amber-200 active:text-blackBtn"
           >
             {menu === "Desayuno" && (
               <img className="w-16" src="src\assets\breakfast.png"></img>
             )}
-            {menu === "Almuerzo y cena" && (
+            {menu === "Almuerzo" && (
               <img className="w-16" src="src\assets\lunch.png"></img>
             )}
             <li className="text-xl" key={menu}>
@@ -42,13 +39,15 @@ interface MenuItems {
   items: MenuItem[];
   counters: { [key: string]: number };
   setCounters: React.Dispatch<React.SetStateAction<{ [key: string]: number }>>;
+  category: string;
 }
 
 interface ClientProps {
   setSelectedClient: React.Dispatch<React.SetStateAction<string>>;
 }
 
-function FoodItems({ items, counters, setCounters }: MenuItems) {
+function FoodItems({ items, counters, setCounters, category }: MenuItems) {
+
   const handleDecrement = (itemName: string) => {
     if (counters[itemName] > 0) {
       setCounters((prevCounters) => ({
@@ -65,9 +64,14 @@ function FoodItems({ items, counters, setCounters }: MenuItems) {
     }));
   };
 
+  const filteredItems = items.filter((item) => item.type === category);
+
+  // const breakfastItems = items.filter((item) => item.type === "Desayuno");
+  // const lunchItems = items.filter((item) => item.type === "Almuerzo");
+
   return (
     <>
-      {items.map((item) => (
+      {filteredItems.map((item) => (
         <ul
           className="bg-blackBtn rounded-3xl w-84 h-32 flex flex-col justify-evenly items-start m-3 p-6 border-2 border-pink-400 text-xl"
           key={item.name}
@@ -89,7 +93,7 @@ function FoodItems({ items, counters, setCounters }: MenuItems) {
             </div>
           </div>
         </ul>
-      ))}
+      ))}    
     </>
   );
 }

@@ -11,13 +11,12 @@ function Order() {
   const [products, setProducts] = useState([]);
   const [counters, setCounters] = useState<{ [key: string]: number }>({});
   const [selectedClient, setSelectedClient] = useState("");
+  const [category, setCategory] = useState("Desayuno");
   const notifyToDeliver = () => toast.success('Pedido enviado a cocina');
   const handleOrderSubmit = () => {
     setCounters({});
     notifyToDeliver();
   };
-  const desayunoItems = ["Desayuno"];
-  const almuerzoCenaItems = ["Almuerzo y cena"];
   const menuItems = products;
   const navigate = useNavigate();
 
@@ -55,8 +54,7 @@ function Order() {
           hideProgressBar
         />
       <div className="flex justify-center items-center w-4/6 md:w-4/5 lg:w-3/5 mt-10">
-        <MenuBtn meals={desayunoItems}></MenuBtn>
-        <MenuBtn meals={almuerzoCenaItems}></MenuBtn>
+        <MenuBtn meals={['Desayuno', 'Almuerzo']} setCategory={setCategory}></MenuBtn>  
       </div>
       <div className="grid grid-cols-[60%,40%] md:w-4/5 lg:w-3/5">
         <div>
@@ -64,6 +62,7 @@ function Order() {
             items={menuItems}
             counters={counters}
             setCounters={setCounters}
+            category={category}
           ></FoodItems>
         </div>
         <div className="grid grid-rows-[0.2fr,1fr]">

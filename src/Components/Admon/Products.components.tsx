@@ -215,6 +215,7 @@ function ModalEditProducts({
   const [name, setName] = useState("");
   const [price, setPrice] = useState<number>(0);
   const [type, setType] = useState("");
+  
 
   if (!selectedProduct) {
     return null;
@@ -295,7 +296,7 @@ function ModalEditProducts({
                               type="radio"
                               id="desayuno"
                               name="type"
-                              value="desayuno"
+                              value="Desayuno"
                               className="text-sm text-white ml-2"
                               required
                               onChange={(e) => setType(e.target.value)}
@@ -312,7 +313,7 @@ function ModalEditProducts({
                               type="radio"
                               id="almuerzo"
                               name="type"
-                              value="almuerzo"
+                              value="Almuerzo"
                               className="text-sm text-white ml-2"
                               required
                               onChange={(e) => setType(e.target.value)}
@@ -399,6 +400,7 @@ function AddProductModal({
   const [name, setName] = useState("");
   const [price, setPrice] = useState<number>(0);
   const [type, setType] = useState("");
+  console.log(type, 'AQUI TYPE')
 
   return (
     <Transition.Root show={open !== null} as={Fragment}>
@@ -475,7 +477,7 @@ function AddProductModal({
                                 type="radio"
                                 id="desayuno"
                                 name="type"
-                                value="desayuno"
+                                value="Desayuno"
                                 onChange={(e) => setType(e.target.value)}
                                 className="text-sm text-white ml-2"
                                 required
@@ -492,7 +494,7 @@ function AddProductModal({
                                 type="radio"
                                 id="almuerzo"
                                 name="type"
-                                value="almuerzo"
+                                value="Almuerzo"
                                 onChange={(e) => setType(e.target.value)}
                                 className="text-sm text-white ml-2"
                                 required
