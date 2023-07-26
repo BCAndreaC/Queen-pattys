@@ -1,6 +1,6 @@
 function getOrders() {
     const token = localStorage.getItem('token');
-    return fetch('http://localhost:8080/orders', {
+    return fetch('https://burger-queen-api-mock-production-9d92.up.railway.app/orders', {
         headers: {
         Authorization: `Bearer ${token}`,
         },
@@ -15,7 +15,7 @@ function getOrders() {
 
  function postOrders(order: object) {
     const token = localStorage.getItem('token');
-    return fetch('http://localhost:8080/orders', {
+    return fetch('https://burger-queen-api-mock-production-9d92.up.railway.app/orders', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -33,7 +33,7 @@ function getOrders() {
 
  function patchOrders(id: number) {
     const token = localStorage.getItem('token');
-    return fetch(`http://localhost:8080/orders/${id}`, {
+    return fetch(`https://burger-queen-api-mock-production-9d92.up.railway.app/orders/${id}`, {
         method: 'PATCH',
         headers: {
           'Content-Type': 'application/json',
@@ -47,8 +47,6 @@ function getOrders() {
     .then(response =>{
         return response.json()
     })
-    .then(data => 
-        console.log(data, 'AQUI PEDIDO CON DELIVERING!!!! '))
     .catch(error =>{
         console.error('Error sending order:', error);
     });
@@ -56,7 +54,7 @@ function getOrders() {
 
  function patchDelivers(id: number) {
     const token = localStorage.getItem('token');
-    return fetch(`http://localhost:8080/orders/${id}`, {
+    return fetch(`https://burger-queen-api-mock-production-9d92.up.railway.app/orders/${id}`, {
         method: 'PATCH',
         headers: {
           'Content-Type': 'application/json',
@@ -70,8 +68,6 @@ function getOrders() {
     .then(response =>{
         return response.json()
     })
-    .then(data => 
-        console.log(data, 'AQUI PEDIDO CON DELIVERED!!!! '))
     .catch(error =>{
         console.error('Error sending order:', error);
     });

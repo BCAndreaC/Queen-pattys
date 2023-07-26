@@ -1,7 +1,7 @@
 
 function fetchProducts () {
     const token = localStorage.getItem('token');
-    return fetch('http://localhost:8080/products', {
+    return fetch('https://burger-queen-api-mock-production-9d92.up.railway.app/products', {
         headers: {
         Authorization: `Bearer ${token}`,
         },
@@ -19,7 +19,7 @@ function postProducts(name: string, price: number, type: string) : Promise<objec
         console.error('Error: missing data');
     }
     const token = localStorage.getItem('token');
-    return fetch('http://localhost:8080/products', {
+    return fetch('https://burger-queen-api-mock-production-9d92.up.railway.app/products', {
         method: 'POST',
         headers: {
             'content-type': 'application/json',
@@ -34,9 +34,6 @@ function postProducts(name: string, price: number, type: string) : Promise<objec
     .then(response =>{
         return response.json()
     })
-    .then(data => {
-        console.log(data, 'AQUI NUEVO PRODUCTO!!')
-    })
     .catch(error =>{
         console.error('Error sending product:', error);
     });
@@ -45,7 +42,7 @@ function postProducts(name: string, price: number, type: string) : Promise<objec
 
 function deleteProduct(id: number | null){
     const token = localStorage.getItem('token');
-    return fetch(`http://localhost:8080/products/${id}`, {
+    return fetch(`https://burger-queen-api-mock-production-9d92.up.railway.app/products/${id}`, {
         method: 'DELETE',
         headers: {
             'contentType': 'application/json',
@@ -65,7 +62,7 @@ function patchProducts(id: number, name: string, price: number, type: string): P
         console.error('Error: missing data');
     }
     const token = localStorage.getItem('token');
-    return fetch(`http://localhost:8080/products/${id}`, {
+    return fetch(`https://burger-queen-api-mock-production-9d92.up.railway.app/products/${id}`, {
         method: 'PATCH',
         headers: {
             'content-type': 'application/json',

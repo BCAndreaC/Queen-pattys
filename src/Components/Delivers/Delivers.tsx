@@ -125,7 +125,6 @@ export function Delivers() {
   const [orders, setOrders] = useState<Order[]>([]);
   const [selectedOrderID, setSelectedOrderID] = useState<number | null>(null);
   const kitchenOrders = orders.filter((o) => o.status === "Delivering");
-//   console.log(kitchenOrders, "AQUI KITCHEN ORDERS DELIVERING");
   const navigate = useNavigate();
   const handleLogout = () => {
     localStorage.removeItem("token");

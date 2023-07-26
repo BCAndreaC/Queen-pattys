@@ -33,7 +33,6 @@ function Login() {
     event.preventDefault();
     await loginAPI(options, setError);
     const userRole = localStorage.getItem("role");
-    // console.log('aqui va llamada', token)
     if (userRole === "admin") {
       navigate("/admon-users");
     } else if (userRole === "waiter") {

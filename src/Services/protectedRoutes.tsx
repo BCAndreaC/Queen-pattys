@@ -9,7 +9,6 @@ export const PrivateRoute = ({
   allowedRoles: string[];
 }) => {
   const userRoles = localStorage.getItem("role");
-  console.log("userRoles", userRoles);
 
   if (!userRoles || !allowedRoles.includes(userRoles)) {
     return <Navigate to="/" />;

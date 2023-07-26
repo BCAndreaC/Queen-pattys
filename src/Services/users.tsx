@@ -1,6 +1,6 @@
 function getUsers () {
     const token = localStorage.getItem('token');
-    return fetch('http://localhost:8080/users', {
+    return fetch('https://burger-queen-api-mock-production-9d92.up.railway.app/users', {
         headers: {
         Authorization: `Bearer ${token}`,
         },
@@ -8,9 +8,6 @@ function getUsers () {
     .then(response => {
         return response.json();
     })
-    // .then(data => {
-    //     console.log(data, 'AQUI USERS!!!')
-    // })
     .catch(error => {
         console.error('Error fetching products:', error)
     })
@@ -21,7 +18,7 @@ function postUser(email: string, password: string, role: string): Promise<object
         console.error('Error: email, password and role are required')
     }
     const token = localStorage.getItem('token');
-    return fetch('http://localhost:8080/users', {
+    return fetch('https://burger-queen-api-mock-production-9d92.up.railway.app/users', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -51,7 +48,7 @@ function patchUsers(id: number, email: string, password: string, role: string): 
         console.error('Error: email, password and role are required')
     }
     const token = localStorage.getItem('token');
-    return fetch(`http://localhost:8080/users/${id}`, {
+    return fetch(`https://burger-queen-api-mock-production-9d92.up.railway.app/${id}`, {
         method: 'PATCH',
         headers: {
           'Content-Type': 'application/json',
@@ -66,8 +63,6 @@ function patchUsers(id: number, email: string, password: string, role: string): 
     .then(response =>{
         return response.json()
     })
-    // .then(data => 
-    //     console.log(data, 'AQUI USUARIO EDITADO!!!! '))
     .catch(error =>{
         console.error('Error sending order:', error);
     });
@@ -75,7 +70,7 @@ function patchUsers(id: number, email: string, password: string, role: string): 
 
 function deleteUsers(id: number) {
     const token = localStorage.getItem('token');
-    return fetch(`http://localhost:8080/users/${id}`, {
+    return fetch(`https://burger-queen-api-mock-production-9d92.up.railway.app/${id}`, {
         method: 'DELETE',
         headers: {
           'Content-Type': 'application/json',

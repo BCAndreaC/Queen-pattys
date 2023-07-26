@@ -400,7 +400,6 @@ function AddProductModal({
   const [name, setName] = useState("");
   const [price, setPrice] = useState<number>(0);
   const [type, setType] = useState("");
-  console.log(type, 'AQUI TYPE')
 
   return (
     <Transition.Root show={open !== null} as={Fragment}>
