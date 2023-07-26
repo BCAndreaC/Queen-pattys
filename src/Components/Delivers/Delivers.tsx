@@ -175,16 +175,17 @@ export function Delivers() {
           bodyClassName={() => "flex flex-row text-kitchenText items-center"}
           hideProgressBar
         />
-        {kitchenOrders.map((order) => (
-          <div className="w-screen" key={order.id}>
-            <div className="bg-blackInput rounded-3xl  max-w-screen m-6 border-3 border-teal-200 p-4">
+        <section className="block mx-auto mt-6 md:w-4/5 lg:w-3/4 xl:w-2/3 2xl:w-3/5">
+          {kitchenOrders.map((order) => (
+          <div key={order.id}>
+            <div className="bg-blackInput rounded-3xl p-4 w-full outline outline-1 outline-celadon">
               <div className="ml-4 flex flex-1 flex-col">
                 <div>
-                  <div className="flex justify-between text-base font-medium text-kitchenText">
+                  <div className="flex justify-between text-2xl font-medium text-kitchenText">
                     <h3>
                       <a href="#">Orden ID: {order.id}</a>
                     </h3>
-                    <p className="ml-4 text-yellowTimer">
+                    <p className="ml-4 text-yellowTimer text-lg">
                       Hora de pedido: {order.dataEntry}
                     </p>
                   </div>
@@ -195,7 +196,7 @@ export function Delivers() {
                     className="flex flex-1 items-end justify-between text-sm"
                     key={index}
                   >
-                    <p className="mt-1 text-sm text-kitchenText">
+                    <p className="mt-1 text-xl text-kitchenText font-light">
                       {element.product.name} x{element.qty}
                     </p>
                   </div>
@@ -206,7 +207,7 @@ export function Delivers() {
               <div className="flex flex-row-reverse ">
                 <button
                   type="button"
-                  className="font-medium text-gunMetal rounded-md bg-celadon p-2"
+                  className="font-medium text-xl text-gunMetal rounded-md bg-celadon p-2 shadow-md shadow-slate-900 hover:bg-gray-100 mt-4"
                   onClick={() => setSelectedOrderID(order.id)}
                 >
                   Entregado
@@ -216,6 +217,8 @@ export function Delivers() {
             <br />
           </div>
         ))}
+        </section>
+
         <>
           {selectedOrderID !== null && (
             <Modal

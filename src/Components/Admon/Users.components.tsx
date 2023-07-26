@@ -74,12 +74,12 @@ function UsersTable({
       </div>
       <>
         {selectedUser !== null && (
-          <ModalUsers
+          <DeleteModalUsers
             selectedUser={selectedUser}
             onClose={() => setSelectedUser(null)}
             onCompleted={handleDelete}
           
-          ></ModalUsers>
+          ></DeleteModalUsers>
         )}
         {selectedUserEdit !== null && (
           <EditUserModal
@@ -259,7 +259,7 @@ function AddUserModal({
                               />
                             </div>
                           </div>
-                          <div className="bg-gunMetal px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6 mb-4 mr-6">
+                          <div className="bg-gunMetal px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6 mb-4 mr-6 mt-6 justify-center">
                           <button
                             type="submit"
                             className="mt-3 inline-flex w-full justify-center rounded-md bg-greenConfirm px-6 py-2 text-sm font-semibold text-gray-900 shadow-sm hover:bg-gray-50 sm:mt-0 sm:w-auto"
@@ -267,7 +267,7 @@ function AddUserModal({
                           >Crear</button>
                           <button
                             type="button"
-                            className="inline-flex w-full justify-center rounded-md bg-red-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-red-500 sm:ml-3 sm:w-auto mr-6 "
+                            className="inline-flex w-full justify-center rounded-md px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-red-500 sm:ml-3 sm:w-auto mr-6 outline outline-1 outline-red-600"
                             onClick={() => onClose()}
                             ref={cancelButtonRef}
                           >Cancelar</button>
@@ -286,7 +286,7 @@ function AddUserModal({
   );
 }
 
-function ModalUsers({
+function DeleteModalUsers({
   selectedUser,
   onClose,
   onCompleted,
@@ -361,21 +361,15 @@ function ModalUsers({
                     type="button"
                     className="mt-3 inline-flex w-full justify-center rounded-md bg-greenConfirm px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm hover:bg-gray-50 sm:mt-0 sm:w-auto"
                     onClick={() => {
-                      onCompleted(selectedUser) 
-                    
+                      onCompleted(selectedUser);
                       onClose();
-                      // const success = onCompleted(selectedUser);
-                      // if (success) {
-                      //   notifyDelete();
-                      // }
-                      // onClose();
                     }}
                   >
                     Eliminar
                   </button>
                   <button
                     type="button"
-                    className="inline-flex w-full justify-center rounded-md bg-red-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-red-500 sm:ml-3 sm:w-auto mr-6"
+                    className="inline-flex w-full justify-center rounded-md  px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-red-500 sm:ml-3 sm:w-auto mr-6 outline outline-1 outline-red-600"
                     onClick={() => onClose()}
                     ref={cancelButtonRef}
                   >
@@ -455,12 +449,7 @@ function EditUserModal({
               <Dialog.Panel className="relative transform overflow-hidden rounded-lg bg-gunMetal text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg">
                 <div className="bg-gunMetal px-4 pb-4 pt-5 sm:p-6 sm:pb-4">
                   <div className="sm:flex sm:items-start">
-                    <div className="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-red-100 sm:mx-0 sm:h-10 sm:w-10">
-                      <ExclamationTriangleIcon
-                        className="h-6 w-6 text-red-600"
-                        aria-hidden="true"
-                      />
-                    </div>
+                
                     <div className="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left">
                       <Dialog.Title
                         as="h2"
@@ -546,7 +535,7 @@ function EditUserModal({
                           {error && (
                             <p className="text-red-400 font-medium">{error}</p>
                           )}
-                          <div className="bg-gunMetal px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6 mb-4 mr-6  mt-6">
+                          <div className="bg-gunMetal px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6 mb-4 mr-6  mt-6 justify-center">
                             <button
                               type="button"
                               className="mt-3 inline-flex w-full justify-center rounded-md bg-greenConfirm px-6 py-2 text-sm font-semibold text-gray-900 shadow-sm hover:bg-gray-50 sm:mt-0 sm:w-auto"
@@ -562,8 +551,7 @@ function EditUserModal({
                                     password,
                                     role
                                   );
-                                  onClose();
-                                 
+                                  onClose();           
                                 }
                               }}
                             >
@@ -571,7 +559,7 @@ function EditUserModal({
                             </button>
                             <button
                               type="button"
-                              className="inline-flex w-full justify-center rounded-md bg-red-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-red-500 sm:ml-3 sm:w-auto mr-6 "
+                              className="inline-flex w-full justify-center rounded-md  px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-red-500 sm:ml-3 sm:w-auto mr-6 outline outline-1 outline-red-600"
                               onClick={() => onClose()}
                               ref={cancelButtonRef}
                             >

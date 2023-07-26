@@ -2,7 +2,7 @@ import { ChangeEvent } from "react";
 
 function Logo() {
   return (
-    <figure className="sm:mx-auto sm:w-full sm:max-w-sm">
+    <figure className="sm:mx-auto sm:w-full sm:max-w-sm mt-6">
       <img src="src\assets\queex4.png"></img>
     </figure>
   );
@@ -77,7 +77,7 @@ function ButtonSumbit() {
     <div>
       <button
         type="submit"
-        className="flex w-full justify-center rounded-md bg-celadon px-3 py-1.5 text-md font-semibold leading-6 text-black shadow-sm hover:bg-teal-600  sm:leading-7 mt-12"
+        className="flex w-full justify-center rounded-md bg-celadon px-3 py-1.5 text-md font-semibold leading-6 text-gunMetal shadow-sm hover:bg-teal-600  sm:leading-7 mt-12"
       >
         Ingresa
       </button>

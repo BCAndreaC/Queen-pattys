@@ -320,7 +320,7 @@ function ModalEditProducts({
                           </div>
                         </div>
                         
-                        <div className="bg-gunMetal px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6 mb-4 mr-6 mt-4">
+                        <div className="bg-gunMetal px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6 mb-4 mr-6 mt-6 justify-center">
                           <button
                             type="submit"
                             className="mt-3 inline-flex w-full justify-center rounded-md bg-greenConfirm px-6 py-2 text-sm font-semibold text-gray-900 shadow-sm hover:bg-gray-50 sm:mt-0 sm:w-auto"
@@ -334,7 +334,7 @@ function ModalEditProducts({
                           </button>
                           <button
                             type="button"
-                            className="inline-flex w-full justify-center rounded-md outline outline-red-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-red-500 sm:ml-3 sm:w-auto mr-6 "
+                            className="inline-flex w-full justify-center rounded-md outline outline-1 outline-red-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-red-500 sm:ml-3 sm:w-auto mr-6 "
                             onClick={() => onClose()}
                             ref={cancelButtonRef}
                           >
@@ -502,7 +502,7 @@ function AddProductModal({
                           {error && (
                             <p className="text-red-400 font-medium">{error}</p>
                           )}
-                          <div className="bg-gunMetal px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6 mb-4 mr-6 mt-4">
+                          <div className="bg-gunMetal px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6 mb-4 mr-6 mt-6 justify-center">
                             <button
                               type="submit"
                               className="mt-3 inline-flex w-full justify-center rounded-md bg-greenConfirm px-6 py-2 text-sm font-semibold text-gray-900 shadow-sm hover:bg-gray-50 sm:mt-0 sm:w-auto"
@@ -515,7 +515,7 @@ function AddProductModal({
                             </button>
                             <button
                               type="button"
-                              className="inline-flex w-full justify-center rounded-md outline outline-red-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-red-500 sm:ml-3 sm:w-auto mr-6 "
+                              className="inline-flex w-full justify-center rounded-md outline outline-1 outline-red-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-red-500 sm:ml-3 sm:w-auto mr-6 "
                               onClick={() => onClose()}
                               ref={cancelButtonRef}
                             >
