@@ -103,6 +103,7 @@ function Client({ setSelectedClient }: ClientProps) {
     <select
       name="mesas"
       id="mesas"
+      required
       onChange={handleClient}
       className="bg-blackBtn border-2 border-cyan-300 rounded-2xl text-xl m-4 py-2 p-2 h-13"
     >
